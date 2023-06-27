@@ -40,9 +40,49 @@ GetPuzzle.onclick = function () {
 }
 
 SolvePuzzle.onclick = () => {
-	SudokuSolver(board, 0, 0, 9);
+	SudokuSolver(board, 0, 0, n);
 };
+
+function isValid( board, i, j, num){
+    for(let x=0;x<n;i++){
+      if( board[i][x]==num||  board[i][x]==num)
+      return false;
+    }
+    letrn=sqrt(n);
+    let si=i-i%rn;
+    let sj=j-j%rn;
+
+    for(let x=si;x<si+rn;x++){
+        for(let y=sj;y<sj+rn;y++){
+            if(board[x][y]==num)
+            return false;
+        }
+    }
+    return true;
+}
 
 function SudokuSolver(board, i, j, n) {
 	// Write your Code here
-}
+		if(i==9){
+		FillBoard(board,n);
+		return true;
+		}
+		if(j==n)
+		return sudukusolver(board,i+1,0,n);
+  
+		if(board[i][j]!=0){
+		  return sudukusolver(board,i,j+1,n);
+		}
+		for(let num =1;num<=9;num++){
+		  if(isValid(board,i,j,num)){
+		  board[i][j]=num;
+		  let=subans=sudukusolver(board,i,j+1,n);
+  
+		  if(subans==true)
+		  return true;
+		  board[i][j]=0;
+		}
+		}
+		return false;
+  }
+
